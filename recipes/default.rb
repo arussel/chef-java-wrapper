@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: java-wrapper
+# Cookbook Name:: java_wrapper
 # Recipe:: default
 #
 # Copyright 2013, Alexandre Russel
@@ -33,17 +33,34 @@ bash "untar wrapper" do
   code <<-EOH
   tar xzf #{node['java_wrapper']['tmp_dir']}/wrapper-linux-x86-64-3.5.20.tar.gz
   cp #{node['java_wrapper']['tmp_dir']}/wrapper-linux-x86-64-3.5.20/bin/wrapper #{node['java_wrapper']['bin_dir']}
-  cp #{node['java_wrapper']['tmp_dir']}/wrapper-linux-x86-64-3.5.20/lib/wrapper.jar #{node['java_wrapper']['lib_dir']}
+  cp #{node['java_wrapper']['tmp_dir']}/wrapper-linux-x86-64-3.5.20/lib/* #{node['java_wrapper']['lib_dir']}
   EOH
 end
 
 template "#{node['java_wrapper']['conf_dir']}/wrapper.conf" do
   source "wrapper.conf.erb"
   variables ({
-    :initMemMB => node["java_wrapper"]["initMemMB"],
-    :maxMemMB  => node["java_wrapper"]["maxMemMB"],
-    :javaParameters => node["java_wrapper"]["javaParameters"],
-    :logFilePath => node["java_wrapper"]["logs_dir"]
+    :init_mem_MB => node["java_wrapper"]["init_mem_MB"],
+    :max_mem_MB  => node["java_wrapper"]["max_mem_MB"],
+    :java_parameters => node["java_wrapper"]["java_parameters"],
+    :log_file_path => node["java_wrapper"]["logs_dir"],
+    :classpath => node["java_wrapper"]["classpath"],
+    :app_parameters => node["java_wrapper"]["app_parameters"]
   })
 end
 
+template "/etc/init.d/#{node['java_wrapper']['app_name']}" do
+  source "sh.script.erb"
+  mode 0744
+  variables ({
+    :app_name => node['java_wrapper']['app_name'],
+    :app_long_name => node['java_wrapper']['app_long_name'],
+    :bin_dir => node['java_wrapper']['bin_dir'],
+    :conf_dir => node['java_wrapper']['conf_dir'],
+    :run_as_user => node['java_wrapper']['run_as_user']
+  })
+end
+
+service "#{node['java_wrapper']['app_name']}" do
+  action [:enable, :start]
+end

@@ -19,13 +19,15 @@ wrapper.java.command=java
 #  or guarantee that the WrapperManager class is initialized.  Helper
 #  classes are provided to do this for you.  See the Integration section
 #  of the documentation for details.
-wrapper.java.mainclass=org.tanukisoftware.wrapper.test.Main
+wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperSimpleApp
 
 # Java Classpath (include wrapper.jar)  Add class path elements as
 #  needed starting from 1
 wrapper.java.classpath.1=../lib/wrapper.jar
 wrapper.java.classpath.2=../conf
-wrapper.java.classpath.3=../lib/*.jar
+<% @classpath.each_with_index do |cp, i|%>
+wrapper.java.classpath.<%= i + 3%>=<%= cp %>
+<% end %>
 
 # Java Library Path (location of Wrapper.DLL or libwrapper.so)
 wrapper.java.library.path.1=../lib
@@ -34,18 +36,21 @@ wrapper.java.library.path.1=../lib
 wrapper.java.additional.auto_bits=TRUE
 
 # Java Additional Parameters
-<% @javaParameters.each_with_index do |jp, i| %>
-wrapper.java.additional.<%= i + 1%>=<%= jp %>
+wrapper.java.additional.1=-Djava.awt.headless=true
+<% @java_parameters.each_with_index do |jp, i| %>
+wrapper.java.additional.<%= i + 2%>=<%= jp %>
 <% end %>
 
 # Initial Java Heap Size (in MB)
-wrapper.java.initmemory= <%= @initMemMB %>
+wrapper.java.initmemory= <%= @init_mem_MB %>
 
 # Maximum Java Heap Size (in MB)
-wrapper.java.maxmemory= <%= @maxMemMB %>
+wrapper.java.maxmemory= <%= @max_mem_MB %>
 
 # Application parameters.  Add parameters as needed starting from 1
-wrapper.app.parameter.1=
+<% @app_parameters.each_with_index do |param, i| %>
+wrapper.app.parameter.<%= i + 1 %>=<%= param %>
+<% end %>
 
 #********************************************************************
 # Wrapper Logging Properties
@@ -60,7 +65,7 @@ wrapper.console.format=PM
 wrapper.console.loglevel=INFO
 
 # Log file to use for wrapper output logging.
-wrapper.logfile=<%= @logFilePath %>/wrapper.log
+wrapper.logfile=<%= @log_file_path %>/wrapper.log
 
 # Format of output for the log file.  (See docs for formats)
 wrapper.logfile.format=LPTM
