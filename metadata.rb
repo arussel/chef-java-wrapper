@@ -4,6 +4,6 @@ maintainer_email 'alexandre@russel.fr'
 license          'Apache 2.0'
 description      'Installs/Configures java_wrapper'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.0.27'
+version          '0.0.28'
 
 recipe "java_wrapper", "Wrap a java application"

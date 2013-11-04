@@ -32,23 +32,8 @@ def deploy_app_with_wrapper
     end
   end
 
-  remote_file "/tmp/wrapper-linux-x86-64-3.5.20.tar.gz" do
-    action :create_if_missing
-    source "http://sourceforge.net/projects/wrapper/files/wrapper/Wrapper_3.5.20_20130625/wrapper-linux-x86-64-3.5.20.tar.gz/download"
-  end
-
-  bash "untar wrapper" do
-    cwd "/tmp"
-    creates "/tmp/wrapper-linux-x86-64-3.5.20"
-    code "tar xzf wrapper-linux-x86-64-3.5.20.tar.gz"
-  end
-
-  bash "cp wrapper files" do
-    cwd "#{new_resource.app_dir}"
-    code <<-EOH
-  cp /tmp/wrapper-linux-x86-64-3.5.20/bin/wrapper #{new_resource.bin_dir}
-  cp /tmp/wrapper-linux-x86-64-3.5.20/lib/* #{new_resource.lib_dir}
-    EOH
+  ark 'java_wrapper' do
+    url new_resource.wrapper_url
   end
 
   template "#{new_resource.conf_dir}/wrapper.conf" do
@@ -58,7 +43,7 @@ def deploy_app_with_wrapper
         :init_mem_MB => new_resource.init_mem_MB,
         :max_mem_MB => new_resource.max_mem_MB,
         :java_parameters => new_resource.java_parameters,
-        :log_file_path => new_resource.log_file_path,
+        :log_file_path => new_resource.logs_dir,
         :classpath => new_resource.classpath,
         :app_parameters => new_resource.app_parameters
     })
@@ -71,11 +56,12 @@ def deploy_app_with_wrapper
     variables ({
         :app_name => new_resource.app_name,
         :app_long_name => new_resource.app_long_name,
-        :bin_dir => new_resource.bin_dir,
+        :java_wrapper_bin_dir => "#{node['ark']['prefix_root']}/#{new_resource.java_wrapper_dir}/bin",
         :conf_dir => new_resource.conf_dir,
         :run_as_user => new_resource.run_as_user
     })
   end
+
   service "#{new_resource.app_name}" do
     action [:enable, :start]
   end
