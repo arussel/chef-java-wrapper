@@ -20,14 +20,14 @@ bash "create play project" do
   code "/usr/local/play/play stage"
 end
 
-java_wrapper 'play' do
-  classpath ["#{helloworld_dir}/target/staged/*"]
-  app_parameters ["play.core.server.NettyServer", "#{helloworld_dir}"]
-  java_parameters ["-Dhttp.port=9001"]
-end
-
 java_wrapper 'jetty' do
   app_parameters ["org.mortbay.start.Main"]
   classpath ["/usr/local/jetty/start.jar"]
   java_parameters ["-Djetty.home=/usr/local/jetty"]
+end
+
+java_wrapper 'play' do
+  classpath ["#{helloworld_dir}/target/staged/*"]
+  app_parameters ["play.core.server.NettyServer", "#{helloworld_dir}"]
+  java_parameters ["-Dhttp.port=9001"]
 end

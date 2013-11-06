@@ -51,18 +51,20 @@ def deploy_app_with_wrapper
 
   template "/etc/init.d/#{new_resource.app_name}" do
     source "sh.script.erb"
-    mode 0744
+    mode 0755
     cookbook "java_wrapper"
     variables ({
         :app_name => new_resource.app_name,
         :app_long_name => new_resource.app_long_name,
         :java_wrapper_bin_dir => "#{node['ark']['prefix_root']}/#{new_resource.java_wrapper_dir}/bin",
         :conf_dir => new_resource.conf_dir,
-        :run_as_user => new_resource.run_as_user
+        :run_as_user => new_resource.run_as_user,
+        :bin_dir => new_resource.bin_dir
     })
   end
 
   service "#{new_resource.app_name}" do
+    supports :restart => true, :status => true
     action [:enable, :start]
   end
 
