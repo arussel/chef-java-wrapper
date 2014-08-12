@@ -21,10 +21,13 @@ def whyrun_supported?
 end
 
 action :create do
+  create_app_with_wrapper
+end
+action :enable do
   deploy_app_with_wrapper
 end
 
-def deploy_app_with_wrapper
+def create_app_with_wrapper
   [new_resource.bin_dir, new_resource.conf_dir, new_resource.lib_dir, new_resource.logs_dir].each do |dir|
     directory "#{dir}" do
       recursive true
@@ -63,9 +66,11 @@ def deploy_app_with_wrapper
     })
   end
 
+
+end
+def deploy_app_with_wrapper
   service "#{new_resource.app_name}" do
     supports :restart => true, :status => true
     action [:enable, :start]
   end
-
 end
