@@ -47,6 +47,7 @@ def create_app_with_wrapper
         :max_mem_MB => new_resource.max_mem_MB,
         :java_parameters => new_resource.java_parameters,
         :log_file_path => new_resource.logs_dir,
+        :log_file_name => new_resource.log_file_name,
         :classpath => new_resource.classpath,
         :app_parameters => new_resource.app_parameters
     })
