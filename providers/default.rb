@@ -40,7 +40,7 @@ def create_app_with_wrapper
     url new_resource.wrapper_url
   end
 
-  template "#{new_resource.conf_dir}/wrapper.conf" do
+  template "#{new_resource.conf_dir}/#{new_resource.app_name}.conf" do
     source "wrapper.conf.erb"
     cookbook "java_wrapper"
     variables ({
