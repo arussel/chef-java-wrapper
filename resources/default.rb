@@ -1,4 +1,4 @@
-actions :create
+actions :create, :enable
 default_action :create
 
 attribute :app_name, :kind_of => String
