@@ -36,6 +36,7 @@ def create_app_with_wrapper
   end
 
   ark 'java_wrapper' do
+    new_resource.wrapper_url ||= "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
     url new_resource.wrapper_url
   end
 

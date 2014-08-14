@@ -31,5 +31,4 @@ def initialize(*args)
   @lib_dir ||= "#{@app_dir}/lib"
   @conf_dir ||= "#{@app_dir}/conf"
   @logs_dir ||= "/var/log/#{@name}"
-  @wrapper_url ||= "http://wrapper.tanukisoftware.com/download/#{wrapper_version}/wrapper-#{wrapper_os}-#{wrapper_cpu}-#{wrapper_bit}-#{wrapper_version}.#{wrapper_extension}"
 end
