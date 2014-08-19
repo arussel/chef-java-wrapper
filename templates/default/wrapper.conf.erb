@@ -24,7 +24,7 @@ wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperSimpleApp
 
 # Java Classpath (include wrapper.jar)  Add class path elements as
 #  needed starting from 1
-wrapper.java.classpath.1=../lib/wrapper.jar
+wrapper.java.classpath.1=/usr/local/java_wrapper/lib/wrapper.jar
 wrapper.java.classpath.2=../conf
 <% @classpath.each_with_index do |cp, i|%>
 wrapper.java.classpath.<%= i + 3%>=<%= cp %>
