@@ -30,6 +30,9 @@ end
 def create_app_with_wrapper
   [new_resource.bin_dir, new_resource.conf_dir, new_resource.lib_dir, new_resource.logs_dir].each do |dir|
     directory "#{dir}" do
+	  owner new_resource.permissions_owner
+	  group new_resource.permissions_group
+	  mode 0755
       recursive true
       action :create
     end
@@ -52,6 +55,8 @@ def create_app_with_wrapper
         :classpath => new_resource.classpath,
         :app_parameters => new_resource.app_parameters
     })
+	owner new_resource.permissions_owner
+    group new_resource.permissions_group
   end
 
   template "/etc/init.d/#{new_resource.app_name}" do
@@ -66,6 +71,8 @@ def create_app_with_wrapper
         :run_as_user => new_resource.run_as_user,
         :bin_dir => new_resource.bin_dir
     })
+	owner new_resource.permissions_owner
+    group new_resource.permissions_group
   end
 
 
