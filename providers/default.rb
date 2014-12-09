@@ -59,7 +59,7 @@ def create_app_with_wrapper
     group new_resource.permissions_group
   end
 
-  template "/etc/init.d/#{new_resource.app_name}" do
+  template "#{new_resource.bin_dir}/#{new_resource.app_name}" do
     source "sh.script.erb"
     mode 0755
     cookbook "java_wrapper"
