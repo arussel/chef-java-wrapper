@@ -75,6 +75,26 @@ def create_app_with_wrapper
     group new_resource.permissions_group
   end
 
+  #copy the native library to specified folder
+  unless new_resource.native_library_dest_dir.empty?
+	
+	filename = case new_resource.wrapper_os 
+	when "linux"
+		"libwrapper.so"
+	when "windows"
+		"wrapper.dll"
+	when "osx"
+		"libwrapper.jnilib"
+	end
+     
+	ark 'java_wrapper' do
+      url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
+      action :cherry_pick
+      path new_resource.native_library_dest_dir
+      creates "wrapper-#{new_resource.wrapper_os}-#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}/lib/#{filename}"
+	end
+  end
+
 
 end
 def deploy_app_with_wrapper

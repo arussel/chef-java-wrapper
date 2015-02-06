@@ -25,6 +25,7 @@ attribute :wrapper_cpu, :kind_of => String, :default => "x86"
 attribute :wrapper_bit, :kind_of => String, :default => "64"
 attribute :wrapper_extension, :kind_of => String, :default => "tar.gz"
 attribute :wrapper_url, :kind_of => String
+attribute :native_library_dest_dir, :kind_of => String, :default => ""    #convenience of copying native library to provided folder
 
 def initialize(*args)
   super
