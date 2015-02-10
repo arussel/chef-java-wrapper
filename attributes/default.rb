@@ -16,5 +16,6 @@ default["java_wrapper"]["max_mem_MB"] = "64"
 default["java_wrapper"]["java_parameters"] = []
 default["java_wrapper"]["app_parameters"] = []
 default["java_wrapper"]["classpath"] = []
+default["java_wrapper"]["library_path"] = []
 default['java_wrapper']['run_as_user'] = "root"
 

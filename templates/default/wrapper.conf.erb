@@ -31,7 +31,13 @@ wrapper.java.classpath.<%= i + 3%>=<%= cp %>
 <% end %>
 
 # Java Library Path (location of Wrapper.DLL or libwrapper.so)
+<% if node['java_wrapper']['library_path'].nil? || node['java_wrapper']['library_path'].empty? %>
 wrapper.java.library.path.1=../lib
+<% else %>
+	<% node['java_wrapper']['library_path'].each_with_index do |lp, i|%>
+		wrapper.java.library.path.<%= i + 1%>=<%= lp %>
+	<% end %>
+<% end %>
 
 # Java Bits.  On applicable platforms, tells the JVM to run in 32 or 64-bit mode.
 wrapper.java.additional.auto_bits=TRUE
