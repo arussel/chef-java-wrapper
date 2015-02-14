@@ -103,7 +103,10 @@ wrapper.ignore_sequence_gaps=TRUE
 wrapper.pidfile.strict=TRUE
 
 # Title to use when running as a console
-wrapper.console.title=Test Wrapper Sample Application
+wrapper.console.title=<%= @app_long_name %>
+
+#whether to daemonize the app
+wrapper.daemonize=<%= @daemonize %>
 
 #********************************************************************
 # Wrapper JVM Checks
