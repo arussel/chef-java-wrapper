@@ -53,7 +53,9 @@ def create_app_with_wrapper
         :log_file_name => new_resource.log_file_name,
         :wrapper_working_dir => new_resource.wrapper_working_dir,
         :classpath => new_resource.classpath,
-        :app_parameters => new_resource.app_parameters
+        :app_parameters => new_resource.app_parameters,
+        :daemonize => new_resource.daemonize,
+        :app_long_name => new_resource.app_long_name
     })
 	owner new_resource.permissions_owner
     group new_resource.permissions_group
