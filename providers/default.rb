@@ -55,6 +55,8 @@ def create_app_with_wrapper
         :classpath => new_resource.classpath,
         :app_parameters => new_resource.app_parameters,
         :daemonize => new_resource.daemonize,
+        :exit_timeout => new_resource.exit_timeout,
+        :startup_timeout => new_resource.startup_timeout,
         :app_long_name => new_resource.app_long_name
     })
 	owner new_resource.permissions_owner

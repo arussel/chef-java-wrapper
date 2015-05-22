@@ -133,6 +133,14 @@ wrapper.filter.trigger.1001=java.lang.OutOfMemoryError
 wrapper.filter.action.1001=RESTART
 wrapper.filter.message.1001=The JVM has run out of memory.
 
+wrapper.use_system_time=false
+wrapper.request_thread_dump_on_failed_jvm_exit=TRUE
+
+#startup and exit timeouts configurable
+wrapper.jvm_exit.timeout=<%= @exit_timeout %>
+wrapper.startup.timeout=<%= @startup_timeout %>
+
+
 #********************************************************************
 # Wrapper Email Notifications. (Requires Professional Edition)
 #********************************************************************

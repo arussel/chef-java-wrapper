@@ -26,6 +26,8 @@ attribute :wrapper_bit, :kind_of => String, :default => "64"
 attribute :wrapper_extension, :kind_of => String, :default => "tar.gz"
 attribute :wrapper_url, :kind_of => String
 attribute :daemonize, :kind_of => String, :default => "true"
+attribute :exit_timeout, :kind_of => String, :default => "15"
+attribute :startup_timeout, :kind_of => String, :default => "30"
 attribute :native_library_dest_dir, :kind_of => String, :default => ""    #convenience of copying native library to provided folder
 
 def initialize(*args)
