@@ -4,7 +4,7 @@ include_recipe 'apt'
 include_recipe 'java'
 
 ark 'jetty' do
-  url 'http://dist.codehaus.org/jetty/jetty-6.1.x/jetty-6.1.3.zip'
+  url 'http://central.maven.org/maven2/org/mortbay/jetty/jetty/6.1.3/jetty-6.1.3.jar'
 end
 
 ark 'play' do
