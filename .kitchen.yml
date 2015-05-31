@@ -25,5 +25,5 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[test_java_wrapper]"]
+  run_list: ["recipe[apt]", "recipe[test_java_wrapper]"]
   attributes: {}
