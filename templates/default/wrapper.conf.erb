@@ -1,6 +1,7 @@
 #encoding=UTF-8
 # Configuration files must begin with a line specifying the encoding
 #  of the the file.
+wrapper.working.dir=<%= @wrapper_working_dir %>
 
 #********************************************************************
 # Wrapper Java Properties
@@ -23,14 +24,20 @@ wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperSimpleApp
 
 # Java Classpath (include wrapper.jar)  Add class path elements as
 #  needed starting from 1
-wrapper.java.classpath.1=../lib/wrapper.jar
+wrapper.java.classpath.1=/usr/local/java_wrapper/lib/wrapper.jar
 wrapper.java.classpath.2=../conf
 <% @classpath.each_with_index do |cp, i|%>
 wrapper.java.classpath.<%= i + 3%>=<%= cp %>
 <% end %>
 
 # Java Library Path (location of Wrapper.DLL or libwrapper.so)
+<% if node['java_wrapper']['library_path'].nil? || node['java_wrapper']['library_path'].empty? %>
 wrapper.java.library.path.1=../lib
+<% else %>
+	<% node['java_wrapper']['library_path'].each_with_index do |lp, i|%>
+		wrapper.java.library.path.<%= i + 1%>=<%= lp %>
+	<% end %>
+<% end %>
 
 # Java Bits.  On applicable platforms, tells the JVM to run in 32 or 64-bit mode.
 wrapper.java.additional.auto_bits=TRUE
@@ -65,7 +72,7 @@ wrapper.console.format=PM
 wrapper.console.loglevel=INFO
 
 # Log file to use for wrapper output logging.
-wrapper.logfile=<%= @log_file_path %>/wrapper.log
+wrapper.logfile=<%= @log_file_path %>/<%= @log_file_name %>
 
 # Format of output for the log file.  (See docs for formats)
 wrapper.logfile.format=LPTM
@@ -96,7 +103,10 @@ wrapper.ignore_sequence_gaps=TRUE
 wrapper.pidfile.strict=TRUE
 
 # Title to use when running as a console
-wrapper.console.title=Test Wrapper Sample Application
+wrapper.console.title=<%= @app_long_name %>
+
+#whether to daemonize the app
+wrapper.daemonize=<%= @daemonize %>
 
 #********************************************************************
 # Wrapper JVM Checks
@@ -122,6 +132,14 @@ wrapper.filter.trigger.1001=java.lang.OutOfMemoryError
 #wrapper.filter.allow_wildcards.1001=TRUE
 wrapper.filter.action.1001=RESTART
 wrapper.filter.message.1001=The JVM has run out of memory.
+
+wrapper.use_system_time=false
+wrapper.request_thread_dump_on_failed_jvm_exit=TRUE
+
+#startup and exit timeouts configurable
+wrapper.jvm_exit.timeout=<%= @exit_timeout %>
+wrapper.startup.timeout=<%= @startup_timeout %>
+
 
 #********************************************************************
 # Wrapper Email Notifications. (Requires Professional Edition)
