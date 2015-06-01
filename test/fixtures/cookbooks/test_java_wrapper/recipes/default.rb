@@ -7,17 +7,16 @@ ark 'jetty' do
   url 'http://central.maven.org/maven2/org/mortbay/jetty/jetty/6.1.3/jetty-6.1.3.jar'
 end
 
-ark 'play' do
-  url 'http://downloads.typesafe.com/play/2.1.3/play-2.1.3.zip'
-end
+include_recipe 'play2'
 
 #normally, we would fetch a dist zipped from somewhere
 #and unzip it. To test we're just building a sample project
 #from play directory
-helloworld_dir = "/usr/local/play/samples/scala/helloworld"
+helloworld_dir = "/usr/local/play/play-2.1.3/samples/scala/helloworld"
 bash "create play project" do
   cwd "#{helloworld_dir}"
-  code "/usr/local/play/play stage"
+  user 'root'
+  code "/usr/local/play/play-2.1.3/play stage"
 end
 
 java_wrapper 'jetty' do
