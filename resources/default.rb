@@ -19,7 +19,7 @@ attribute :permissions_owner, :kind_of => String, :default => "root"
 attribute :permissions_group, :kind_of => String, :default => "root"
 attribute :java_wrapper_dir, :kind_of => String, :default => "java_wrapper"
 attribute :wrapper_working_dir, :kind_of => String
-attribute :wrapper_version, :kind_of => String
+attribute :wrapper_version, :kind_of => String, :default => "3.5.21"
 attribute :wrapper_os, :kind_of => String, :default => "linux"
 attribute :wrapper_cpu, :kind_of => String, :default => "x86"
 attribute :wrapper_bit, :kind_of => String, :default => "64"
