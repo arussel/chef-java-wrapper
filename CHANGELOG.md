@@ -4,6 +4,12 @@ java-wrapper CHANGELOG
 This file is used to list changes made in each version of the java-wrapper cookbook.
 
 
+0.6.0
+-----
+- Made test kitchen pass again, on both ubuntu 12.04 and ubuntu 14.04
+- separated enable & start actions for resource
+- Fixed missing run_as_user attribute
+
 0.5.0
 -----
 - @gsaslis - Added configurable exit.timeout and startup.timeout. Also added .use_system_time=false and .request_thread_dump_on_failed_jvm_exit=TRUE as hard-coded values for now.
