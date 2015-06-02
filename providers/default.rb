@@ -26,6 +26,12 @@ end
 action :enable do
   deploy_app_with_wrapper
 end
+action :start do
+  start_app_with_wrapper
+end
+action :remove do
+  remove_app_with_wrapper
+end
 
 def create_app_with_wrapper
   [new_resource.bin_dir, new_resource.conf_dir, new_resource.lib_dir, new_resource.logs_dir].each do |dir|
@@ -103,8 +109,30 @@ def create_app_with_wrapper
 
 end
 def deploy_app_with_wrapper
+
+  execute "install app as service" do
+    cwd "#{new_resource.bin_dir}"
+    user 'root'
+    command "#{new_resource.bin_dir}/#{new_resource.app_name} install"
+    creates '/etc/init.d/jetty'
+  end
+
+end
+def remove_app_with_wrapper
+
+  execute "remove app from service" do
+    cwd "#{new_resource.bin_dir}"
+    user 'root'
+    command "#{new_resource.bin_dir}/#{new_resource.app_name} remove"
+  end
+
+end
+
+def start_app_with_wrapper
+
   service "#{new_resource.app_name}" do
     supports :restart => true, :status => true
-    action [:enable, :start]
+    action :start
   end
+
 end

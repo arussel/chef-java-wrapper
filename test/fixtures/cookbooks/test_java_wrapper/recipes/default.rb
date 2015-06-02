@@ -24,6 +24,7 @@ java_wrapper 'jetty' do
   classpath ["/usr/local/jetty/start.jar"]
   java_parameters ["-Djetty.home=/usr/local/jetty"]
   native_library_dest_dir "/usr/local/java_wrapper/lib"
+  action [:create, :enable, :start]
 end
 
 java_wrapper 'play' do
