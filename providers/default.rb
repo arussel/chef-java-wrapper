@@ -57,6 +57,7 @@ def create_app_with_wrapper
         :daemonize => new_resource.daemonize,
         :exit_timeout => new_resource.exit_timeout,
         :startup_timeout => new_resource.startup_timeout,
+        :native_library_dest_dir => new_resource.native_library_dest_dir,
         :app_long_name => new_resource.app_long_name
     })
 	owner new_resource.permissions_owner

@@ -23,6 +23,7 @@ java_wrapper 'jetty' do
   app_parameters ["org.mortbay.start.Main"]
   classpath ["/usr/local/jetty/start.jar"]
   java_parameters ["-Djetty.home=/usr/local/jetty"]
+  native_library_dest_dir "/usr/local/java_wrapper/lib"
 end
 
 java_wrapper 'play' do

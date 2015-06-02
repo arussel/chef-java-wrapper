@@ -33,6 +33,9 @@ wrapper.java.classpath.<%= i + 3%>=<%= cp %>
 # Java Library Path (location of Wrapper.DLL or libwrapper.so)
 <% if node['java_wrapper']['library_path'].nil? || node['java_wrapper']['library_path'].empty? %>
 wrapper.java.library.path.1=../lib
+	<% unless @native_library_dest_dir.nil? || @native_library_dest_dir.empty? %>
+		wrapper.java.library.path.2=<%= @native_library_dest_dir %>
+	<% end %>
 <% else %>
 	<% node['java_wrapper']['library_path'].each_with_index do |lp, i|%>
 		wrapper.java.library.path.<%= i + 1%>=<%= lp %>
