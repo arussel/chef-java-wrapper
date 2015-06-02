@@ -11,7 +11,9 @@ java_wrapper 'jetty' do
   app_parameters ["org.eclipse.jetty.start.Main"]
   classpath ["/usr/local/jetty/start.jar"]
   java_parameters ["-Djetty.home=/usr/local/jetty"]
+  wrapper_working_dir "/usr/local/jetty"
+  log_file_name 'jetty.log'
   native_library_dest_dir "/usr/local/java_wrapper/lib"
-  action [:create, :enable, :start]
+  action [:remove, :create, :enable, :start]
 end
 

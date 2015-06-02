@@ -21,9 +21,11 @@ have to be provided:
 - `classpath`: the classpath of the application
 - `app_parameters`: the array of String that will be passed to the application
 - `java_parameters`: The array of java parameters
+- `log_file_name`: the file name where the logs will be stored. Use something relevant to your app_name, to make it clear what log you're readind.
+- `wrapper_working_dir`: configuring the Working Directory.
 
 This attributes can be used to further customize the application:
-- `app_long_name`: the long name use for the daemon
+- `app_long_name`: the long name used for the daemon
 - `app_dir`: the directory in which the application is deployed, it defaults to `/opt/#{app_name}`
 - `bin_dir`: the bin directory for the wrapper, it defaults to `#{app_dir}/bin`
 - `lib_idr`: the lib directory for the wrapper, it defaults to `#{app_dir}/lib`
@@ -45,7 +47,6 @@ This attributes can be used to further customize the application:
 - `wrapper_bit`: the architecture for the java wrapper, defaults to 64
 - `wrapper_extension`: the extension for the java wrapper, defaults to tar.gz
 - `wrapper_url`: the url to download the wrapper, defaults to "http://wrapper.tanukisoftware.com/download/#{wrapper_version}/wrapper-#{wrapper_os}-#{wrapper_cpu}-#{wrapper_bit}-#{wrapper_version}.#{wrapper_extension}"
-- `wrapper_working_dir`: configuring the Working Directory.
 
 Usage
 -----
