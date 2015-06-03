@@ -21,17 +21,26 @@ have to be provided:
 - `classpath`: the classpath of the application
 - `app_parameters`: the array of String that will be passed to the application
 - `java_parameters`: The array of java parameters
+- `log_file_name`: the file name where the logs will be stored. Use something relevant to your app_name, to make it clear what log you're readind.
+- `wrapper_working_dir`: configuring the Working Directory.
 
 This attributes can be used to further customize the application:
-- `app_long_name`: the long name use for the daemon
+- `app_long_name`: the long name used for the daemon
 - `app_dir`: the directory in which the application is deployed, it defaults to `/opt/#{app_name}`
 - `bin_dir`: the bin directory for the wrapper, it defaults to `#{app_dir}/bin`
 - `lib_idr`: the lib directory for the wrapper, it defaults to `#{app_dir}/lib`
 - `conf_dir`: the conf directory for the wrapper, it defaults to `#{app_dir}/conf`
+- `daemonize`: Spawns a fork of the Wrapper process as a detached non-session group leader. This means that the process will continue to run even after the console from which the Wrapper process was launched has been closed.
+- `exit_timeout`: the timeout the wrapper allows to the app for termination, in seconds. (defaults to 15).
+- `library_path`: an array of paths, where the wrapper will look for (Wrapper.DLL or libwrapper.so)
 - `logs_dir`: the log directory for the wrapper, it defaults to `/var/log/#{name}`
 - `init_mem_MB`: the mininum memory in MB for the JVM, defaults to 3
 - `max_mem_MB`: the maximum memory in MB for the JVM, defaults to 64
+- `native_library_dest_dir`: convenience parameter for copying the native library to this folder
+- `permissions_owner`: the system user who will be the owner of directories and files.
+- `permissions_group`: the system group to which the directories and files will belong.
 - `run_as_user`: the user running the wrapper, defaults to root
+- `startup_timeout`: the timeout the wrapper allows between the time that the Wrapper launches the JVM process and the time that the JVM side of the Wrapper responds that the application has started. Setting this property value to "0" (zero) means never time out. The value is in seconds. (defaults to 30).
 - `wrapper_version`: the version of the java wrapper, defaults to 3.5.21
 - `wrapper_os`: the os for the java wrapper, defaults to linux
 - `wrapper_cpu`: the cpu for the java wrapper, defaults to x86
@@ -66,4 +75,4 @@ Contributing
 
 License and Authors
 -------------------
-Authors: Alexandre Russel
+Authors: Alexandre Russel, Yorgos Saslis
