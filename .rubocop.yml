@@ -1,0 +1,9 @@
+
+Metrics/LineLength:
+  Max: 145
+
+Style/TrailingComma:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
