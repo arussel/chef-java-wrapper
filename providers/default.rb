@@ -22,15 +22,27 @@ end
 
 action :create do
   create_app_with_wrapper
+
+  # My state has changed so I'd better notify observers
+  new_resource.updated_by_last_action(true)
 end
 action :enable do
   deploy_app_with_wrapper
+
+  # My state has changed so I'd better notify observers
+  new_resource.updated_by_last_action(true)
 end
 action :start do
   start_app_with_wrapper
+
+  # My state has changed so I'd better notify observers
+  new_resource.updated_by_last_action(true)
 end
 action :remove do
   remove_app_with_wrapper
+
+  # My state has changed so I'd better notify observers
+  new_resource.updated_by_last_action(true)
 end
 
 def extract_native_lib
@@ -98,7 +110,7 @@ end
 
 def create_app_with_wrapper
   [new_resource.bin_dir, new_resource.conf_dir, new_resource.lib_dir, new_resource.logs_dir].each do |dir|
-    directory "#{dir}" do
+    directory dir do
       owner new_resource.permissions_owner
       group new_resource.permissions_group
       mode 0755
@@ -119,7 +131,7 @@ end
 
 def deploy_app_with_wrapper
   execute 'install app as service' do
-    cwd "#{new_resource.bin_dir}"
+    cwd new_resource.bin_dir
     user 'root'
     command "#{new_resource.bin_dir}/#{new_resource.app_name} install"
     creates '/etc/init.d/jetty'
@@ -127,16 +139,16 @@ def deploy_app_with_wrapper
 end
 
 def remove_app_with_wrapper
-  return unless Dir.exists?("#{new_resource.bin_dir}")
+  return unless Dir.exists?(new_resource.bin_dir)
   execute 'remove app from service' do
-    cwd "#{new_resource.bin_dir}"
+    cwd new_resource.bin_dir
     user 'root'
     command "#{new_resource.bin_dir}/#{new_resource.app_name} remove"
   end
 end
 
 def start_app_with_wrapper
-  service "#{new_resource.app_name}" do
+  service new_resource.app_name do
     supports restart: true, status: true
     action :start
   end

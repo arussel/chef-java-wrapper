@@ -1,6 +1,6 @@
 # deployments attributes
 default['java_wrapper']['app_name']      = 'java-wrapped-app'
-default['java_wrapper']['app_long_name'] = "#{node['java_wrapper']['app_name']}"
+default['java_wrapper']['app_long_name'] = node['java_wrapper']['app_name']
 default['java_wrapper']['install_dir']   = "/opt/#{node['java_wrapper']['app_name']}"
 default['java_wrapper']['bin_dir']       = "#{node['java_wrapper']['install_dir']}/bin"
 default['java_wrapper']['conf_dir']      = "#{node['java_wrapper']['install_dir']}/conf"
