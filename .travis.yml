@@ -9,6 +9,6 @@ script:
 - bundle exec kitchen test $KITCHEN_INSTANCE
 after_script:
 - bundle exec kitchen destroy
- matrix:
+matrix:
   - KITCHEN_INSTANCE='default-ubuntu-1404'
   - KITCHEN_INSTANCE='default-ubuntu-1204'
