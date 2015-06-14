@@ -1,0 +1,28 @@
+---
+driver_config:
+  aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
+  availability_zone: <%= ENV['AWS_AVAILABILITY_ZONE'] %>
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: latest
+
+platforms:
+
+- name: ubuntu-12.04
+  run_list:
+  - recipe[apt]
+- name: ubuntu-14.04
+  run_list:
+  - recipe[apt]
+
+suites:
+- name: default
+  run_list: ["recipe[test_java_wrapper]"]
+  attributes:
+    java:
+      install_flavour: openjdk
+      jdk_version: 7
+      set_etc_environment: true
