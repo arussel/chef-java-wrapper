@@ -1,8 +1,6 @@
 ---
 driver:
   name: ec2
-  aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
-  aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
 #  availability_zone: <%= ENV['AWS_AVAILABILITY_ZONE'] %>
 #  security_group_ids: ["sg-1a2b3c4d"]
