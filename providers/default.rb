@@ -127,6 +127,7 @@ def deploy_app_with_wrapper
 end
 
 def remove_app_with_wrapper
+  return unless Dir.exists?("#{new_resource.bin_dir}")
   execute 'remove app from service' do
     cwd "#{new_resource.bin_dir}"
     user 'root'
