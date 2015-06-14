@@ -16,8 +16,12 @@ provisioner:
   name: chef_solo
   require_chef_omnibus: latest
 
-platforms:
+transport:
+  ssh_key: travis.pem
+  connection_timeout: 10
+  connection_retries: 5
 
+platforms:
 - name: ubuntu-12.04
   run_list:
   - recipe[apt]
