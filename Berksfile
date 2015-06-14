@@ -6,4 +6,3 @@ cookbook 'test_java_wrapper', path: './test/fixtures/cookbooks/test_java_wrapper
 cookbook 'ark'
 cookbook 'java'
 cookbook 'apt'
-cookbook 'play2', github: 'njin-fr/play2'
