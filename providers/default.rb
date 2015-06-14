@@ -26,6 +26,12 @@ end
 action :enable do
   deploy_app_with_wrapper
 end
+action :start do
+  start_app_with_wrapper
+end
+action :remove do
+  remove_app_with_wrapper
+end
 
 def extract_native_lib
   # copy the native library to specified folder
@@ -41,36 +47,13 @@ def extract_native_lib
              end
 
   ark 'java_wrapper' do
-    url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/"\
-      "wrapper-#{new_resource.wrapper_os}-#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-"\
-      "#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
+    url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
+      "#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
     action :cherry_pick
     path new_resource.native_library_dest_dir
     creates "wrapper-#{new_resource.wrapper_os}-#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-"\
-    "#{new_resource.wrapper_version}/lib/#{filename}"
+      "#{new_resource.wrapper_version}/lib/#{filename}"
   end
-end
-
-def create_app_with_wrapper
-  [new_resource.bin_dir, new_resource.conf_dir, new_resource.lib_dir, new_resource.logs_dir].each do |dir|
-    directory "#{dir}" do
-      owner new_resource.permissions_owner
-      group new_resource.permissions_group
-      mode 0755
-      recursive true
-      action :create
-    end
-  end
-
-  ark 'java_wrapper' do
-    url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/"\
-      "wrapper-#{new_resource.wrapper_os}-#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-"\
-      "#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
-  end
-
-  create_conf_files
-
-  extract_native_lib
 end
 
 def create_conf_files
@@ -89,6 +72,7 @@ def create_conf_files
       daemonize: new_resource.daemonize,
       exit_timeout: new_resource.exit_timeout,
       startup_timeout: new_resource.startup_timeout,
+      native_library_dest_dir: new_resource.native_library_dest_dir,
       app_long_name: new_resource.app_long_name
     )
     owner new_resource.permissions_owner
@@ -112,9 +96,47 @@ def create_conf_files
   end
 end
 
+def create_app_with_wrapper
+  [new_resource.bin_dir, new_resource.conf_dir, new_resource.lib_dir, new_resource.logs_dir].each do |dir|
+    directory "#{dir}" do
+      owner new_resource.permissions_owner
+      group new_resource.permissions_group
+      mode 0755
+      recursive true
+      action :create
+    end
+  end
+
+  ark 'java_wrapper' do
+    url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
+      "#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
+  end
+
+  create_conf_files
+
+  extract_native_lib
+end
+
 def deploy_app_with_wrapper
+  execute 'install app as service' do
+    cwd "#{new_resource.bin_dir}"
+    user 'root'
+    command "#{new_resource.bin_dir}/#{new_resource.app_name} install"
+    creates '/etc/init.d/jetty'
+  end
+end
+
+def remove_app_with_wrapper
+  execute 'remove app from service' do
+    cwd "#{new_resource.bin_dir}"
+    user 'root'
+    command "#{new_resource.bin_dir}/#{new_resource.app_name} remove"
+  end
+end
+
+def start_app_with_wrapper
   service "#{new_resource.app_name}" do
     supports restart: true, status: true
-    action [:enable, :start]
+    action :start
   end
 end
