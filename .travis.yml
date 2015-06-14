@@ -1,0 +1,14 @@
+language: ruby
+bundler_args: --without kitchen_vagrant --without development
+rvm:
+- 2.1.0
+cache:
+  bundler: true
+script:
+#- bundle exec rake travis --trace
+- bundle exec kitchen test $KITCHEN_INSTANCE
+after_script:
+- bundle exec kitchen destroy
+ matrix:
+  - KITCHEN_INSTANCE='default-ubuntu-1404'
+  - KITCHEN_INSTANCE='default-ubuntu-1204'
