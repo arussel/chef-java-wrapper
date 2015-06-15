@@ -2,9 +2,10 @@ name 'java_wrapper'
 maintainer 'Alexandre Russel'
 maintainer_email 'alexandre@russel.fr'
 license 'Apache 2.0'
-description 'Installs/Configures java_wrapper'
+description 'Library cookbook that exposes the java_wrapper LWRP for Installing / Configuring java_wrapper on a server.'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.6.0'
+version '1.0.0'
 depends 'ark'
 
-recipe 'java_wrapper', 'Wrap a java application'
+supports 'ubuntu', '= 12.04'
+supports 'ubuntu', '= 14.04'
