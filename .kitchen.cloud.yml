@@ -9,7 +9,7 @@ driver:
   require_chef_omnibus: true
 #  subnet_id: subnet-6e5d4c3b
 #  iam_profile_name: chef-client
-  instance_type: t2.micro
+  instance_type: m3.medium
   associate_public_ip: true
 
 provisioner:
@@ -26,6 +26,8 @@ platforms:
   run_list:
   - recipe[apt]
 - name: ubuntu-14.04
+  driver:
+    image_id: ami-273c4250
   run_list:
   - recipe[apt]
 
