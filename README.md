@@ -1,7 +1,8 @@
 java_wrapper Cookbook
 =====================
 
-https://travis-ci.org/gsaslis/chef-java-wrapper.svg?branch=master
+### Status
+[![Build Status](https://travis-ci.org/gsaslis/chef-java-wrapper.svg?branch=master)](https://travis-ci.org/gsaslis/chef-java-wrapper)
 
 Overview
 ========
