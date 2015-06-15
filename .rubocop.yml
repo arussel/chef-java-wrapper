@@ -1,0 +1,16 @@
+
+Metrics/LineLength:
+  Max: 145
+
+Metrics/MethodLength:
+  Max: 40
+  CountComments: False
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/TrailingComma:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false

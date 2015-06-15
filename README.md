@@ -1,6 +1,9 @@
 java_wrapper Cookbook
 =====================
 
+### Status
+[![Build Status](https://travis-ci.org/gsaslis/chef-java-wrapper.svg?branch=master)](https://travis-ci.org/gsaslis/chef-java-wrapper)
+
 Overview
 ========
 This cookbook provides `java_wrapper`, a resource that wrap a java application
