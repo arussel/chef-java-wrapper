@@ -22,18 +22,11 @@ platforms:
 #  driver_config:
 #    box: opscode-centos-6.4
 #    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-#- name: centos-5.9
-#  driver_config:
-#    box: opscode-centos-5.9
-#    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-5.9_provisionerless.box
 
 suites:
 - name: default
   run_list: ["recipe[apt]", "recipe[test_java_wrapper]"]
   attributes:
-    play2:
-      version: 2.1.3
-      checksum: 03ee0b6971c2f325a2a012470040b4104e2b58ef48d32767c0fd690e5c6cac48
     java:
       install_flavour: openjdk
       jdk_version: 7

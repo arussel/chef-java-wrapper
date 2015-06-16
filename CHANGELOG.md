@@ -4,6 +4,11 @@ java-wrapper CHANGELOG
 This file is used to list changes made in each version of the java-wrapper cookbook.
 
 
+1.0.0
+-----
+- Build passes on Travis CI, using Test Kitchen with kitchen-ec2 driver for IT tests using serverspec.
+- fixed rubocop and foodcritic warnings
+
 0.6.0
 -----
 - Made test kitchen pass again, on both ubuntu 12.04 and ubuntu 14.04
