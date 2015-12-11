@@ -134,7 +134,7 @@ def deploy_app_with_wrapper
     cwd new_resource.bin_dir
     user 'root'
     command "#{new_resource.bin_dir}/#{new_resource.app_name} install"
-    creates '/etc/init.d/jetty'
+    creates "/etc/init.d/#{new_resource.app_name}"
   end
 end
 
