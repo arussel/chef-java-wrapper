@@ -4,7 +4,7 @@ include_recipe 'apt'
 include_recipe 'java'
 
 ark 'jetty' do
-  url 'http://download.eclipse.org/jetty/9.2.11.v20150529/dist/jetty-distribution-9.2.11.v20150529.tar.gz'
+  url 'http://download.eclipse.org/jetty/9.2.13.v20150730/dist/jetty-distribution-9.2.13.v20150730.tar.gz'
 end
 
 java_wrapper 'jetty' do
