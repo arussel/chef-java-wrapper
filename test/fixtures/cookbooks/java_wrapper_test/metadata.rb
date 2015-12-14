@@ -1,4 +1,4 @@
-name 'test_java_wrapper'
+name 'java_wrapper_test'
 version '1.0.0'
 
 depends 'java_wrapper'
