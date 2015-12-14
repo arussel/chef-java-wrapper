@@ -53,7 +53,7 @@ This attributes can be used to further customize the application:
 
 Usage
 -----
-You will find usage in the test recipe at https://github.com/arussel/chef-java-wrapper/blob/master/test/fixtures/cookbooks/test_java_wrapper/recipes/default.rb
+You will find usage in the test recipe at https://github.com/arussel/chef-java-wrapper/blob/master/test/fixtures/cookbooks/java_wrapper_test/recipes/default.rb
 
 java_wrapper 'jetty' do
   app_parameters ["org.mortbay.start.Main"]

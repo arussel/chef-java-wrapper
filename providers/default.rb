@@ -47,7 +47,7 @@ end
 
 def extract_native_lib
   # copy the native library to specified folder
-  return unless new_resource.native_library_dest_dir.empty?
+  return if new_resource.native_library_dest_dir.empty?
 
   filename = case new_resource.wrapper_os
              when 'linux'
@@ -58,7 +58,7 @@ def extract_native_lib
                'libwrapper.jnilib'
              end
 
-  ark 'java_wrapper' do
+  ark 'java_wrapper_native_lib' do
     url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
       "#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
     action :cherry_pick
