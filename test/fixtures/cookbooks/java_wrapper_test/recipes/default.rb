@@ -13,6 +13,7 @@ java_wrapper 'jetty' do
   java_parameters ['-Djetty.home=/usr/local/jetty']
   wrapper_working_dir '/usr/local/jetty'
   log_file_name 'jetty.log'
+  console_flush 'TRUE'
   # wrapper_version '3.5.27' # override if you don't want the default 3.5.21
   action [:remove, :create, :enable, :start]
 end
