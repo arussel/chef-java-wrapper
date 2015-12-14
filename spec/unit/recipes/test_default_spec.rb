@@ -33,15 +33,32 @@ describe 'java_wrapper_test::default' do
     end
   end
 
-  it 'creates app_name.conf' do
-    %w(
-      /opt/jetty/conf/jetty.conf
-      /opt/jetty/bin/jetty
-    ).each do |file|
-      expect(chef_run).to create_template(file).with(
-        owner: 'root',
-        group: 'root'
-      )
-    end
+  it 'creates /opt/jetty/conf/jetty.conf' do
+    expect(chef_run).to create_template('/opt/jetty/conf/jetty.conf').with(
+      owner: 'root',
+      group: 'root',
+      variables: {
+        init_mem_MB: '3',
+        max_mem_MB: '64',
+        java_parameters: ['-Djetty.home=/usr/local/jetty'],
+        log_file_path: '/var/log/jetty',
+        log_file_name: 'jetty.log',
+        wrapper_working_dir: '/usr/local/jetty',
+        classpath: ['/usr/local/jetty/start.jar'],
+        app_parameters: ['org.eclipse.jetty.start.Main'],
+        daemonize: 'true',
+        exit_timeout: '15',
+        startup_timeout: '30',
+        native_library_dest_dir: '',
+        console_flush: 'TRUE',
+        app_long_name: nil }
+    )
+  end
+
+  it 'creates conf file /opt/jetty/bin/jetty' do
+    expect(chef_run).to create_template('/opt/jetty/bin/jetty').with(
+      owner: 'root',
+      group: 'root'
+    )
   end
 end
