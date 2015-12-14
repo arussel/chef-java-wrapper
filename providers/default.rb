@@ -47,7 +47,7 @@ end
 
 def extract_native_lib
   # copy the native library to specified folder
-  return unless new_resource.native_library_dest_dir.empty?
+  return if new_resource.native_library_dest_dir.empty?
 
   filename = case new_resource.wrapper_os
              when 'linux'
