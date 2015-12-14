@@ -3,6 +3,15 @@ java-wrapper CHANGELOG
 
 This file is used to list changes made in each version of the java-wrapper cookbook.
 
+1.1.0
+-----
+- Added LWRP parameter for wrapper.console.flush
+
+1.0.1
+-----
+- Fixed broken tests (due to changed URL for jetty download)
+- Fixed native_library extraction feature (wrong predicate)
+- Added chefspec unit tests
 
 1.0.0
 -----
