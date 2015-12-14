@@ -40,6 +40,7 @@ This attributes can be used to further customize the application:
 - `init_mem_MB`: the mininum memory in MB for the JVM, defaults to 3
 - `max_mem_MB`: the maximum memory in MB for the JVM, defaults to 64
 - `native_library_dest_dir`: convenience parameter for copying the native library to this folder
+- `console_flush`: Configures the output sent to the console to be completely flushed (TRUE / FALSE). False by default.
 - `permissions_owner`: the system user who will be the owner of directories and files.
 - `permissions_group`: the system group to which the directories and files will belong.
 - `run_as_user`: the user running the wrapper, defaults to root

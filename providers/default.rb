@@ -85,6 +85,7 @@ def create_conf_files
       exit_timeout: new_resource.exit_timeout,
       startup_timeout: new_resource.startup_timeout,
       native_library_dest_dir: new_resource.native_library_dest_dir,
+      console_flush: new_resource.console_flush,
       app_long_name: new_resource.app_long_name
     )
     owner new_resource.permissions_owner
