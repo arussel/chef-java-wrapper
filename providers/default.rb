@@ -102,6 +102,7 @@ def create_conf_files
       java_wrapper_bin_dir: "#{node['ark']['prefix_root']}/#{new_resource.java_wrapper_dir}/bin",
       conf_dir: new_resource.conf_dir,
       run_as_user: new_resource.run_as_user,
+      wrapper_version: new_resource.wrapper_version,
       bin_dir: new_resource.bin_dir
     )
     owner new_resource.permissions_owner
