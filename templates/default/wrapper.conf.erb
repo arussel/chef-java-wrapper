@@ -78,7 +78,11 @@ wrapper.console.loglevel=INFO
 wrapper.console.flush=<%= @console_flush %>
 
 # Log file to use for wrapper output logging.
+<% if !node['java_wrapper']['file_logging_enabled'] %>
+wrapper.logfile=
+<% else %>
 wrapper.logfile=<%= @log_file_path %>/<%= @log_file_name %>
+<% end %>
 
 # Format of output for the log file.  (See docs for formats)
 wrapper.logfile.format=LPTM

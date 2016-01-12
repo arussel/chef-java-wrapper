@@ -9,6 +9,7 @@ default['java_wrapper']['tmp_dir']       = "#{node['java_wrapper']['install_dir'
 default['java_wrapper']['logs_dir']      = "/var/log/#{node['java_wrapper']['app_name']}"
 default['java_wrapper']['permissions_owner']      = 'root'
 default['java_wrapper']['permissions_group']      = 'root'
+default['java_wrapper']['file_logging_enabled']      = true
 
 # wrapper configuration attributes
 default['java_wrapper']['init_mem_MB'] = '3'

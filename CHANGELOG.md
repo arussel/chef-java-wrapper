@@ -3,6 +3,11 @@ java-wrapper CHANGELOG
 
 This file is used to list changes made in each version of the java-wrapper cookbook.
 
+1.2.0
+-----
+- Added cookbook attribute that disables file logging ( arussel/chef-java-wrapper#10 )
+- Fixed warning about version incompatibility (arussel/chef-java-wrapper#9)
+
 1.1.0
 -----
 - Added LWRP parameter for wrapper.console.flush
