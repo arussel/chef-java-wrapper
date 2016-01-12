@@ -40,6 +40,7 @@ This attributes can be used to further customize the application:
 - `init_mem_MB`: the mininum memory in MB for the JVM, defaults to 3
 - `max_mem_MB`: the maximum memory in MB for the JVM, defaults to 64
 - `native_library_dest_dir`: convenience parameter for copying the native library to this folder
+- `console_flush`: Configures the output sent to the console to be completely flushed (TRUE / FALSE). False by default.
 - `permissions_owner`: the system user who will be the owner of directories and files.
 - `permissions_group`: the system group to which the directories and files will belong.
 - `run_as_user`: the user running the wrapper, defaults to root
@@ -50,10 +51,11 @@ This attributes can be used to further customize the application:
 - `wrapper_bit`: the architecture for the java wrapper, defaults to 64
 - `wrapper_extension`: the extension for the java wrapper, defaults to tar.gz
 - `wrapper_url`: the url to download the wrapper, defaults to "http://wrapper.tanukisoftware.com/download/#{wrapper_version}/wrapper-#{wrapper_os}-#{wrapper_cpu}-#{wrapper_bit}-#{wrapper_version}.#{wrapper_extension}"
+- `file_logging_enabled`: cause file logging to be disabled if set to false. Boolean. True by default.
 
 Usage
 -----
-You will find usage in the test recipe at https://github.com/arussel/chef-java-wrapper/blob/master/test/fixtures/cookbooks/test_java_wrapper/recipes/default.rb
+You will find usage in the test recipe at https://github.com/arussel/chef-java-wrapper/blob/master/test/fixtures/cookbooks/java_wrapper_test/recipes/default.rb
 
 java_wrapper 'jetty' do
   app_parameters ["org.mortbay.start.Main"]

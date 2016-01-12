@@ -29,6 +29,7 @@ attribute :daemonize, kind_of: String, default: 'true'
 attribute :exit_timeout, kind_of: String, default: '15'
 attribute :startup_timeout, kind_of: String, default: '30'
 attribute :native_library_dest_dir, kind_of: String, default: ''    # convenience of copying native library to provided folder
+attribute :console_flush, kind_of: String, default: 'FALSE'
 
 def initialize(*args)
   super

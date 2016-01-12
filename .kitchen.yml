@@ -25,7 +25,7 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[apt]", "recipe[test_java_wrapper]"]
+  run_list: ["recipe[apt]", "recipe[java_wrapper_test]"]
   attributes:
     java:
       install_flavour: openjdk

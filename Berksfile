@@ -2,7 +2,7 @@ source 'https://supermarket.getchef.com'
 
 metadata
 
-cookbook 'test_java_wrapper', path: './test/fixtures/cookbooks/test_java_wrapper'
-cookbook 'ark'
+cookbook 'java_wrapper_test', path: './test/fixtures/cookbooks/java_wrapper_test'
+cookbook 'ark', github: 'burtlo/ark'
 cookbook 'java'
 cookbook 'apt'

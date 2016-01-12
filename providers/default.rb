@@ -47,7 +47,7 @@ end
 
 def extract_native_lib
   # copy the native library to specified folder
-  return unless new_resource.native_library_dest_dir.empty?
+  return if new_resource.native_library_dest_dir.empty?
 
   filename = case new_resource.wrapper_os
              when 'linux'
@@ -58,7 +58,7 @@ def extract_native_lib
                'libwrapper.jnilib'
              end
 
-  ark 'java_wrapper' do
+  ark 'java_wrapper_native_lib' do
     url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
       "#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
     action :cherry_pick
@@ -85,6 +85,7 @@ def create_conf_files
       exit_timeout: new_resource.exit_timeout,
       startup_timeout: new_resource.startup_timeout,
       native_library_dest_dir: new_resource.native_library_dest_dir,
+      console_flush: new_resource.console_flush,
       app_long_name: new_resource.app_long_name
     )
     owner new_resource.permissions_owner
@@ -101,6 +102,7 @@ def create_conf_files
       java_wrapper_bin_dir: "#{node['ark']['prefix_root']}/#{new_resource.java_wrapper_dir}/bin",
       conf_dir: new_resource.conf_dir,
       run_as_user: new_resource.run_as_user,
+      wrapper_version: new_resource.wrapper_version,
       bin_dir: new_resource.bin_dir
     )
     owner new_resource.permissions_owner
