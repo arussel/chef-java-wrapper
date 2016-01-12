@@ -9,3 +9,5 @@ depends 'ark'
 
 supports 'ubuntu', '= 12.04'
 supports 'ubuntu', '= 14.04'
+supports 'opensuse', '= 13.1'
+supports 'opensuse', '= 13.2'
