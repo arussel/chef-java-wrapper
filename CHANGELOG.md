@@ -3,6 +3,10 @@ java-wrapper CHANGELOG
 
 This file is used to list changes made in each version of the java-wrapper cookbook.
 
+1.2.1
+-----
+- Fixed Travis Build
+
 1.2.0
 -----
 - Added cookbook attribute that disables file logging ( arussel/chef-java-wrapper#10 )
