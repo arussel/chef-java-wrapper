@@ -11,7 +11,7 @@ describe 'java_wrapper_test::default' do
 
   it 'uses ark to download java wrapper archive' do
     expect(chef_run).to install_ark('java_wrapper').with(
-      url: 'http://wrapper.tanukisoftware.com/download/3.5.21/wrapper-linux-x86-64-3.5.21.tar.gz',
+      url: 'http://download.tanukisoftware.com/wrapper/3.5.21/wrapper-linux-x86-64-3.5.21.tar.gz',
       action: [:install]
     )
   end
