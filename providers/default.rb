@@ -59,7 +59,7 @@ def extract_native_lib
              end
 
   ark 'java_wrapper_native_lib' do
-    url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
+    url "http://download.tanukisoftware.com/wrapper/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
       "#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
     action :cherry_pick
     path new_resource.native_library_dest_dir
@@ -122,7 +122,7 @@ def create_app_with_wrapper
   end
 
   ark 'java_wrapper' do
-    url "http://wrapper.tanukisoftware.com/download/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
+    url "http://download.tanukisoftware.com/wrapper/#{new_resource.wrapper_version}/wrapper-#{new_resource.wrapper_os}-"\
       "#{new_resource.wrapper_cpu}-#{new_resource.wrapper_bit}-#{new_resource.wrapper_version}.#{new_resource.wrapper_extension}"
   end
 

@@ -50,7 +50,7 @@ This attributes can be used to further customize the application:
 - `wrapper_cpu`: the cpu for the java wrapper, defaults to x86
 - `wrapper_bit`: the architecture for the java wrapper, defaults to 64
 - `wrapper_extension`: the extension for the java wrapper, defaults to tar.gz
-- `wrapper_url`: the url to download the wrapper, defaults to "http://wrapper.tanukisoftware.com/download/#{wrapper_version}/wrapper-#{wrapper_os}-#{wrapper_cpu}-#{wrapper_bit}-#{wrapper_version}.#{wrapper_extension}"
+- `wrapper_url`: the url to download the wrapper, defaults to "http://download.tanukisoftware.com/wrapper/#{wrapper_version}/wrapper-#{wrapper_os}-#{wrapper_cpu}-#{wrapper_bit}-#{wrapper_version}.#{wrapper_extension}"
 - `file_logging_enabled`: cause file logging to be disabled if set to false. Boolean. True by default.
 
 Usage
